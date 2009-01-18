@@ -1,0 +1,16 @@
+abstract: Use a RDF::Trine::Model for the returned RDF graph
+author: Kjetil Kjernsmo <kjetilk@cpan.org>
+build_requires: 
+  Test::More: 0
+distribution_type: module
+generated_by: Module::Install version 0.64
+license: perl
+name: RDF-RDFa-Parser-Trine
+no_index: 
+  directory: 
+    - inc
+    - t
+requires: 
+  RDF::RDFa::Parser: 0.04
+  RDF::Trine: 0
+version: 0.01
