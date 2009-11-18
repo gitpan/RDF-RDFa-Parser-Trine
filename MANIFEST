@@ -10,8 +10,8 @@ inc/Module/Install/Makefile.pm
 inc/Module/Install/Metadata.pm
 inc/Module/Install/Win32.pm
 inc/Module/Install/WriteAll.pm
+inc/Test/Signature.pm
 lib/RDF/RDFa/Parser/Trine.pm
-Makefile.old
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
@@ -19,6 +19,8 @@ META.yml
 README
 SIGNATURE
 t/00-load.t
+t/00signature.t
 t/pod-coverage.t
 t/pod.t
 t/RDF-RDFa-Parser-adapted.t
+t/xmlliteral.t

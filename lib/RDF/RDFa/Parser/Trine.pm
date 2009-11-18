@@ -9,11 +9,11 @@ RDF::RDFa::Parser::Trine - Use a RDF::Trine::Model for the returned RDF graph
 
 =head1 VERSION
 
-Version 0.01
+Version 0.1
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = 0.1;
 
 use RDF::RDFa::Parser;
 use RDF::Trine::Model;
@@ -36,10 +36,6 @@ sub new {
 This module inherits all the methods of its superclass, but overrides
 the graph method, and will instead return an RDF::Trine::Model.
 
-It can also be configured to create graph names. It does this by
-looking for xml:id attributes of the nearest parent element to the
-node where it found the parsed triple.
-
   $storage = RDF::Trine::Store::DBI->temporary_store;
   $parser = RDF::RDFa::Parser::Trine->new($storage, $xhtml, 'http://example.com/foo');
   $parser->consume;
@@ -61,26 +57,22 @@ Will return an RDF::Trine::Model object containing the full graph. As
 per the RDFa specification, it will always return an unnamed graph
 containing all the triples of the RDFa document.
 
-=item $p->named_graph(0)
-
-If this method is called with a true argument, the parser will also
-look for an xml:id attribute of the nearest parent element, and if
-found, will concatenate the attribute with the base URI and a hash to
-create a graph name URI. This feature is turned off by default.
-
 =back
 
 =cut
 
-sub named_graph {
+
+sub named_graph { #TODO
   my ($self, $switch) = @_;
-  $self->{NAMED_GRAPH} = $switch;
+ # $self->{NAMED_GRAPH} = $switch;
+ $self->{NAMED_GRAPH} = 0;
 }
 
 sub graph {
   my $self = shift;
-  return $self->{RESULTS}
+  return $self->{RESULTS};
 }
+
 
 sub _callback {
   my $parser      = shift;  # A reference to the RDF::RDFa::Parser object
@@ -100,6 +92,7 @@ sub _callback {
 
   # Add statement to default model.
   my $statement = RDF::Trine::Statement->new($ts, $tp, $to);
+
 
   $parser->{RESULTS}->add_statement($statement);
   # If we are configured for it, and graph name can be found, add it.
@@ -144,7 +137,19 @@ sub _callback_literal {
   my $language  = shift;  # Language (possibly undef or '')
 
   # Now we know there's a literal
-  my $to = RDF::Trine::Node::Literal->new($object, $language, $datatype);
+
+  my $to;
+  
+  if (defined($datatype)) {
+    if ($datatype eq 'http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral') {
+      $object = $element->childNodes;
+      $to = RDF::Trine::Node::Literal::XML->new($object);
+    } else {
+      $to = RDF::Trine::Node::Literal->new($object, $language, $datatype);
+    } 
+  } else {
+    $to = RDF::Trine::Node::Literal->new($object, $language, undef);
+  }
 
   _callback($parser, $element, $subject, $predicate, $to);
 }
@@ -157,6 +162,10 @@ sub _find_graph_name {
 =head1 AUTHOR
 
 Kjetil Kjernsmo, C<< <kjetilk at cpan.org> >>
+
+=head1 TODO
+
+This module does not yet fully support the named graphs of its subclass.
 
 =head1 BUGS
 

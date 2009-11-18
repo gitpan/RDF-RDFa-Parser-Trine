@@ -6,4 +6,4 @@ BEGIN {
 	use_ok( 'RDF::RDFa::Parser::Trine' );
 }
 
-diag( "Testing RDF::RDFa::Parser::Trine $RDF::RDFa::Parser::Trine::VERSION, Perl $], $^X" );
+diag( "Testing RDF::RDFa::Parser::Trine $RDF::RDFa::Parser::Trine::VERSION" );

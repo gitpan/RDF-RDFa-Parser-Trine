@@ -8,20 +8,25 @@
 
 # change 'tests => 1' to 'tests => last_test_to_print';
 
-use Test::More tests => 11;
+use Test::More tests => 12;
 BEGIN { 
   use_ok('RDF::RDFa::Parser::Trine'); 
-  use_ok('RDF::Trine::Store::DBI');
+  use_ok('RDF::Trine');
+  use_ok('RDF::Trine::Store');
   use_ok('RDF::Trine::Node::Resource');
 };
+
+
+
 
 #########################
 
 # Insert your test code below, the Test::More module is use()ed here so read
 # its man page ( perldoc Test::More ) for help writing this test script.
 
-use RDF::RDFa::Parser;
-use RDF::Trine::Store::DBI;
+use RDF::RDFa::Parser::Trine; 
+use RDF::Trine;
+use RDF::Trine::Store;
 use RDF::Trine::Node::Resource;
 
 my $xhtml = <<EOF;
@@ -39,8 +44,11 @@ my $xhtml = <<EOF;
 	</body>
 </html>
 EOF
-$storage = RDF::Trine::Store::DBI->temporary_store;
-$parser = RDF::RDFa::Parser::Trine->new($storage, $xhtml, 'http://example.com/einstein');
+
+
+my $storage = RDF::Trine::Store::DBI->temporary_store;
+my $parser = RDF::RDFa::Parser::Trine->new($storage, $xhtml, 'http://example.com/einstein');
+
 
 ok(lc($parser->dom->documentElement->tagName) eq 'html', 'DOM Tree returned OK.');
 ok($parser->consume, "Graph consumed");
