@@ -9,11 +9,11 @@ RDF::RDFa::Parser::Trine - Use a RDF::Trine::Model for the returned RDF graph
 
 =head1 VERSION
 
-Version 0.1
+Version 0.11
 
 =cut
 
-our $VERSION = 0.1;
+our $VERSION = 0.11;
 
 use RDF::RDFa::Parser;
 use RDF::Trine::Model;

@@ -22,6 +22,7 @@ no_index:
 requires:
   RDF::RDFa::Parser: 0.04
   RDF::Trine: 0.111
+  RDF::Trine::Node::Literal::XML: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.1
+version: 0.11

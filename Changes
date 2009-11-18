@@ -1,5 +1,14 @@
 Revision history for RDF-RDFa-Parser-Trine
 	
+0.11: 2009-11-18  Kjetil Kjernsmo  <kjetil@kjernsmo.net>
+
+	* Packaging fixed
+
+0.10: 2009-11-17  Kjetil Kjernsmo  <kjetil@kjernsmo.net>
+
+	* Support RDF::Trine::Node::Literal::XML
+	* Misc fixes
+
 0.01: 2009-01-18  Kjetil Kjernsmo  <kjetil@kjernsmo.net>
 
 	* First version

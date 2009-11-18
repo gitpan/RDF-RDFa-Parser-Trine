@@ -1,44 +1,76 @@
-RDF-RDFa-Parser-Trine
+NAME
+    RDF::RDFa::Parser::Trine - Use a RDF::Trine::Model for the returned RDF
+    graph
 
-This module overrides some methods of RDF::RDFa::Parser to return a
-RDF::Trine::Model from the graph method.
+VERSION
+    Version 0.11
 
+SYNOPSIS
+    This module inherits all the methods of its superclass, but overrides
+    the graph method, and will instead return an RDF::Trine::Model.
 
-INSTALLATION
+      $storage = RDF::Trine::Store::DBI->temporary_store;
+      $parser = RDF::RDFa::Parser::Trine->new($storage, $xhtml, 'http://example.com/foo');
+      $parser->consume;
+      my $graph = $parser->graph;
 
-To install this module, run the following commands:
+METHODS
+    $p = RDF::RDFa::Parser::Trine->new($store, $xhtml, $baseuri)
+        The constructor. Has three parameters. The first is a (single)
+        RDF::Trine::Store. The others are passed directly to the superclass.
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+    $p->graph
+        Will return an RDF::Trine::Model object containing the full graph.
+        As per the RDFa specification, it will always return an unnamed
+        graph containing all the triples of the RDFa document.
 
-SUPPORT AND DOCUMENTATION
+AUTHOR
+    Kjetil Kjernsmo, "<kjetilk at cpan.org>"
 
-After installing, you can find documentation for this module with the
-perldoc command.
+TODO
+    This module does not yet fully support the named graphs of its subclass.
 
-    perldoc RDF::RDFa::Parser::Trine
+BUGS
+    Please report any bugs or feature requests to "bug-rdf-rdfa-parser-trine
+    at rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=RDF-RDFa-Parser-Trine>.
+    I will be notified, and then you'll automatically be notified of
+    progress on your bug as I make changes.
 
-You can also look for information at:
+SUPPORT
+    You can find documentation for this module with the perldoc command.
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=RDF-RDFa-Parser-Trine
+        perldoc RDF::RDFa::Parser::Trine
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/RDF-RDFa-Parser-Trine
+    You can also look for information at:
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/RDF-RDFa-Parser-Trine
+    *   RT: CPAN's request tracker
 
-    Search CPAN
-        http://search.cpan.org/dist/RDF-RDFa-Parser-Trine/
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=RDF-RDFa-Parser-Trine>
 
+    *   AnnoCPAN: Annotated CPAN documentation
 
-COPYRIGHT AND LICENCE
+        <http://annocpan.org/dist/RDF-RDFa-Parser-Trine>
 
-Copyright (C) 2009 Kjetil Kjernsmo
+    *   CPAN Ratings
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+        <http://cpanratings.perl.org/d/RDF-RDFa-Parser-Trine>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/RDF-RDFa-Parser-Trine/>
+
+ACKNOWLEDGEMENTS
+    I would like to thank Toby Inkster for creating Swignition and the
+    parser module that this module depends on. I would also like to thank
+    Greg Williams for RDF::Trine.
+
+    Finally, I would like to thank the persistently circling dahuts for
+    their help and encouragement.
+
+COPYRIGHT & LICENSE
+    Copyright 2009 Kjetil Kjernsmo.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
