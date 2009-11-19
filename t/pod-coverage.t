@@ -2,8 +2,6 @@ use strict;
 use warnings;
 use Test::More;
 
-plan skip_all => "Need to fix the named graphs TODO"; 
-
 # Ensure a recent version of Test::Pod::Coverage
 my $min_tpc = 1.08;
 eval "use Test::Pod::Coverage $min_tpc";

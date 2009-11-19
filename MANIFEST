@@ -21,6 +21,7 @@ README
 SIGNATURE
 t/00-load.t
 t/00signature.t
+t/named_graphs.t
 t/pod-coverage.t
 t/pod.t
 t/RDF-RDFa-Parser-adapted.t

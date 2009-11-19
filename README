@@ -3,7 +3,7 @@ NAME
     graph
 
 VERSION
-    Version 0.11
+    Version 0.2
 
 SYNOPSIS
     This module inherits all the methods of its superclass, but overrides
@@ -19,16 +19,25 @@ METHODS
         The constructor. Has three parameters. The first is a (single)
         RDF::Trine::Store. The others are passed directly to the superclass.
 
-    $p->graph
-        Will return an RDF::Trine::Model object containing the full graph.
-        As per the RDFa specification, it will always return an unnamed
-        graph containing all the triples of the RDFa document.
+    $p->graph( [ $graph_name ] )
+        Without a graph name, this method will return an RDF::Trine::Model
+        object with all statements of the full graph. As per the RDFa
+        specification, it will always return an unnamed graph containing all
+        the triples of the RDFa document. If the model contains multiple
+        graphs, all triples will be returned unless a graph name is
+        specified.
+
+        It will also take an optional graph URI as argument, and return an
+        RDF::Trine::Model tied to a temporary storage with all triples in
+        that graph.
+
+    $p->graphs
+        Will return a hashref of all named graphs, where the graph name is a
+        key and the value is a RDF::Trine::Model tied to a temporary
+        storage.
 
 AUTHOR
     Kjetil Kjernsmo, "<kjetilk at cpan.org>"
-
-TODO
-    This module does not yet fully support the named graphs of its subclass.
 
 BUGS
     Please report any bugs or feature requests to "bug-rdf-rdfa-parser-trine

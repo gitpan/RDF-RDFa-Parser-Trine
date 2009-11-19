@@ -1,5 +1,9 @@
 Revision history for RDF-RDFa-Parser-Trine
 	
+0.2: 2009-11-19  Kjetil Kjernsmo  <kjetil@kjernsmo.net>
+
+	* It now supports named graphs
+
 0.11: 2009-11-18  Kjetil Kjernsmo  <kjetil@kjernsmo.net>
 
 	* Packaging fixed
